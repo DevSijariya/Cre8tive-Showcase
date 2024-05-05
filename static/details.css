@@ -1,0 +1,375 @@
+
+.box .myform{
+    margin: 15px;
+    /* font-size: 20px; */
+   
+ }
+ .myform h2{
+   font-size:20px;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+ }
+ .myform p{
+   margin-bottom: 5px;
+ }
+ .myform p input{
+   margin-left: 36%;
+ }
+ .row{
+   margin-top:50px;
+ }
+p strong{
+   font-weight: bold;
+   
+}
+ .box{
+    width: 40%;
+    float: left;
+    margin-left: 0;
+     border: 3px solid #fff;
+     align-items: center;
+     justify-content: center;
+     display: flex;
+     padding-left:30px;
+ }
+
+ .box h3{
+   margin-top:20px;
+   padding-left: 22%;
+   margin-bottom:20px ;
+ }
+input{
+     width: 250px;
+     height: 30px;
+ }
+ 
+ 
+ .dat{
+    /* justify-content: center; */
+    /* display: flex; */
+    margin-left: 150px;
+    width:40%;
+    float: left;
+  
+    /* border:3px solid #fff; */
+ }
+ .dat1 p{
+   margin-left:-1rem;
+   margin-right: 1rem
+}
+
+.row2 {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust column width as needed */
+   grid-gap: 20px; /* Adjust gap between grid items */
+}
+.row2 button{
+   width:5rem;
+}
+.dis {
+   /* background-color: #f0f0f0;.  */
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.row .A{
+   margin-left:40%;
+}
+
+
+ @media only screen and (max-width: 908px) {
+    .dat{
+        width: 90%;
+        margin-left: 1rem;
+     
+    }
+    .box{
+        width: 90%;
+        margin-left: 5%;
+        padding-left: 40px;
+    }
+   }
+   
+   .box1 img{
+      width:50%;
+      border:3px solid #fff;
+   }
+   
+   .dat1{
+      margin-left: 150px;
+      width:30%;
+      float: left;
+      padding-left: 30px;
+      margin-bottom:20px;
+      padding-bottom:20px ;
+      padding-top: 20px;
+   }
+   .box1{
+      width: 30%;
+      float: left;
+      margin-left: 0;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      margin-left: 9.5rem;
+   }
+   .dat1 .block1-1{
+      display: flex;
+      .block-box1 {
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      };
+      .block-box1 p{
+         margin-left: 580%;
+      }
+      .block-box2 ,.block-box3,.block-box4,.block-box5{
+         display: block;
+         font-size: 0px;
+         background-color:transparent;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+   }
+   .dat1 .block1-2{
+      display: flex;
+      .block-box1  {
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         font-size: 0px;
+         height:20px;
+      };
+      .block-box2{
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+      .block-box2 p{
+         margin-left: 480%;
+      }
+      .block-box3,.block-box4,.block-box5{
+         display: block;
+         font-size: 0px;
+         background-color:transparent;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+   }
+   .dat1 .block1-3{
+      display: flex;
+      .block-box1 ,.block-box2 {
+         display: block;
+         font-size:  0px;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+      .block-box3{
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+      .block-box3 p{
+         margin-left: 350%;
+      }
+      .block-box4,.block-box5{
+         display: block;
+         font-size:  0px;
+         
+         background-color:transparent;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+   }
+   .dat1 .block1-4{
+      display: flex;
+      .block-box1 ,.block-box2 ,.block-box3{
+         display: block;
+         font-size: 0px;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      };
+      .block-box4{
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+        
+      }
+      .block-box4 p{
+         margin-left: 250%;
+      }
+      .block-box5{
+         font-size: 0px;
+         display: block;
+         background-color:transparent;
+         border:2px solid #fff;
+         width: 10%; 
+         height:20px;
+         
+      }
+   }
+   .dat1 .block1-5{
+      display: flex;
+      .block-box1 ,.block-box2 ,.block-box3,.block-box4{
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         font-size: 0px;
+         height:20px;
+      };
+      .block-box5{
+         display: block;
+         background-color: green;
+         border:2px solid #fff;
+         width: 10%;
+         height:20px;
+      }
+      .block-box5 p{
+         margin-left: 150%;
+       
+      }
+   }
+ .del{
+   width: 100%;
+   margin-left:180%
+ }
+   
+ .row1 img{
+   width:25rem;
+}
+
+   @media only screen and (max-width: 1000px){
+      .dat1{
+         margin-right:2rem;
+         margin-left: 5rem;
+         width: 100%;
+      }
+
+      .box1 img{
+         display: none;
+        
+       }
+       .dat1 .A{
+         margin-left: 30%;
+      }
+      .dat1 a{
+         margin-left:5%;
+      }
+   }
+@media only screen and (max-width: 710px){
+       .dat1{
+
+      
+         border:2px solid #fff;
+         width:80%;
+         margin-bottom: 50px;
+         float: left;
+         /* margin-left: 20px; */
+         margin-left: 10%;
+   
+     }
+     .box1{
+         margin-bottom: 20px;;
+         width:80%;
+         float: left;
+         /* border: 3px solid #fff; */
+         margin-left:40%;
+         
+     }
+     .box1 img{
+      display: none;
+     width: 30%;
+      border:3px solid #fff;
+   }
+   input#id_photo,input#id_Resume {
+      margin-left:5%;
+   }
+       
+    }
+
+form label{
+   width: 15rem;
+}
+form label img{
+   width: 10rem;
+   margin-left: 5rem;
+   transition: .5s ease;
+}
+form label img:hover{
+   width: 11rem;
+}
+form label input{
+   width: 1rem;
+   margin-left: 10rem;
+   display: none;
+}
+#temp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100vh; */
+    }
+.temps {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+}
+@media only screen and (max-width:560px) {
+   .row .A{
+      margin: 25%
+   }
+}
+@media only screen and (max-width:400px){
+   .box{
+      margin-left: 2rem;
+   h3{
+      font-size:1.5rem;
+      margin-left:-1.5rem;
+   }
+   p{
+      text-align: justify;
+      margin-left:-1rem;
+      width: 17rem;
+   }
+   p #id_User_description{
+      width:100%;
+   }
+   p a{
+      font-size: small;
+      /* margin-left:-1rem; */
+   }
+   input{
+      width: 50%;
+      height: 30px;
+  }
+   button{
+      width: 17rem;
+      margin-left:-1rem;
+   }
+}
+.dat1{
+   p{
+      margin-left:-1rem;
+      margin-right: 1rem
+   }
+}
+
+}

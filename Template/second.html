@@ -1,0 +1,165 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block scripts %}
+  <script type="text/javascript">
+    $(function() {
+        $('.gallery1 a').lightBox();
+    });
+   </script>
+   {% endblock %}
+{% block content %}
+<div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<li><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></li>
+                <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+                    
+					<li class="active"><a href="">Portfolio</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+					
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+     
+
+           
+       
+    </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	   <div class="pages">
+			 <div class="gallery1">
+                <div class="da">
+                    <h2>Instructions</h2>
+                   
+                      
+                           <br>
+                           <p><strong>Write things carefully</strong></p><br>
+                           <p><strong>Write here about your Educational details </strong></p><br>
+                           <p><strong>You can edit your detail after submitting </strong></p><br>
+                        
+                            <br><br>
+                   </div>
+                <div class="bo"  style="border: 3px solid rgb(10, 10, 67);">
+                  <!-- <form method="post" action="{% url 'add_education' %}">
+                    <br>
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {{ formset.as_p }}
+                    <button type="submit">Save</button>
+                  </form> -->
+				  <form method="post" action="{% url 'add_education' %}">
+					{% csrf_token %}
+					{{ formset.management_form }}
+				<input type="text" name="educationsdetail_set-0-university" maxlength="100" id="id_educationsdetail_set-0-university" placeholder="University">
+				<input type="text" name="educationsdetail_set-0-college" maxlength="100" id="id_educationsdetail_set-0-college" placeholder="College">
+				<input type="text" name="educationsdetail_set-0-degree" maxlength="100" id="id_educationsdetail_set-0-degree" placeholder="Degree">
+				<input type="text" name="educationsdetail_set-0-year_of_passing" maxlength="100" id="id_educationsdetail_set-0-year_of_passing" placeholder="Year of Passing">
+				<input type="text" name="educationsdetail_set-0-Cgpa" maxlength="100" id="id_educationsdetail_set-0-Cgpa" placeholder="CGPA/Percentage">
+				<button type="submit" >Save</button>
+			</form>
+            </div>
+        
+               
+		   </div>
+           
+		   
+            <div class="clear"></div>	
+            <ul class="dc_pagination dc_paginationA dc_paginationA06">
+            
+            <li><a href="{% url 'user_profile' %}" >1</a></li>
+            <li><a href="{% url 'add_education' %}" class="current" >2</a></li>
+            <li><a href="{% url 'links' %}">3</a></li>
+            <li><a href="{% url 'add_skills' %}">4</a></li>
+            <li><a href="{% url 'add_projects' %}">5</a></li>
+            <li><a href="{% url 'services' %}">6</a></li>
+            <li><a href="{% url 'templates_page' %}">7</a></li>
+            <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+        </ul>
+    </div>
+          </div>
+		</div>
+		<!-- <div class="footer">
+			<div class="wrap">
+				<div class="footer-grid footer-grid1">
+					<div class="f-logo">
+				     <a href="index.html"><img src="{%static 'images/image/f-logo.png' %}" alt=""></a>
+			        </div>
+					<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
+				</div>
+				<div class="footer-grid footer-grid2">
+					<h4>Contact</h4>
+				    <ul>
+						<li><i class="pin"> </i><div class="extra-wrap">
+							<p>2321 Street name,<br> City name,Country</p>
+						</div></li>
+						<li><i class="phone"> </i><div class="extra-wrap">
+							<p>+2321 256 652</p>
+						</div></li>
+						<li><i class="mail"> </i><div class="extra-wrap1">
+							<p>info@comapnay name.com</p>
+						</div></li>
+						<li><i class="earth"> </i><div class="extra-wrap1">
+							<p>info@comapnay name.com</p>
+						</div></li>
+					</ul> 
+				</div>
+				<div class="footer-grid footer-grid3">
+					<h4>Latest Tweets</h4>
+					<div class="recent-tweet">
+						<div class="recent-tweet-icon">
+							<span> </span>
+						</div>
+						<div class="recent-tweet-info">
+							<p>Ds which don't look even slightly believable. If you are going to use a passage <a href="#"> 3 Hours Ago</a></p>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					<div class="recent-tweet1">
+						<div class="recent-tweet-icon">
+							<span> </span>
+						</div>
+						<div class="recent-tweet-info">
+							<p>Ds which don't look even slightly believable. If you are going to use a passage <a href="#"> 3 Hours Ago</a></p>
+						</div>
+						<div class="clear"> </div>
+					</div>
+				</div>
+				<div class="footer-grid footer-grid4">
+					<h4>News Letter</h4>
+					<p>Randomised words which don't look even slightly believable. If you are going to use a passage</p>
+					<form>
+						<input type="text" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email Address';}">
+						<input type="submit" value="">
+					</form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+		</div> -->
+		<!-- <div class="footer-bottom">
+	 		  <div class="wrap">
+	     	  	<div class="copy">
+                    <p>© Copyright By Sanskar Sijariya</p>
+			    </div>
+			    <div class="social">	
+				   <ul>	
+					  <li class="facebook"><a href="#"><span> </span></a></li>
+					  <li class="linkedin"><a href="#"><span> </span></a></li>
+					  <li class="twitter"><a href="#"><span> </span></a></li>		
+				   </ul>
+			    </div>
+			    <div class="clear"></div>
+			  </div>
+       </div> -->
+       
+
+{% endblock %}

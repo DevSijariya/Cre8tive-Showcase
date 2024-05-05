@@ -1,0 +1,102 @@
+
+{% extends 'first.html' %}
+{% load static %}
+ {% block content %}
+ 
+ <div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<li><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></li>
+                <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+                    
+					<li class="active"><a href="">Portfolio</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+     
+
+           
+       
+    </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	   <div class="pages">
+            <h1 style="font-size: 20px;font-weight: bold;font-style: italic;">Personal Details</h1><br>
+			 <div class="gallery1">
+                
+      
+            <div class="da">    
+                <table>
+                        <tr >
+                          <th><p><strong>Name : </strong></p></th>
+                          <th><p>{{ details.name }}</p></th>
+                        </tr>
+                        <tr >
+                            <th><p><strong>Age : </strong></p></th>
+                            <th><p>{{ details.age }}</p></th>
+                          </tr>
+                          <tr >
+                            <th><p><strong>Address : </strong></p></th>
+                            <th><p>{{ details.address }}</p></th>
+                          </tr>
+                          <tr >
+                            <th><p><strong>Mobile Number : </strong></p></th>
+                            <th><p> {{ details.mobile_number }}</p></th>
+                          </tr>
+                          <tr >
+                            <th><p><strong>Email : </strong></p></th>
+                            <th><p>{{ details.email }}</p></th>
+                          </tr>
+                          <tr >
+                            <th><p><strong> About User: <strong></p></th>
+                            <th><p>{{ details.aboutuser}}</p></th>
+                          </tr>
+                          <tr >
+                            <th><p><strong>Detailed Description: </strong></p></th>
+                            <th><p>{{ details.User_description}}</p></th>
+                          </tr>
+                 
+                </table>
+
+   
+   
+
+     </div><br>
+    <div class="bo" style="border:none;">
+    {% if details.photo %}
+    <img src="{{ MEDIA_URL }}{{details.photo.url }}"  alt="Profile Image">
+    
+    {% else %}
+    <p>No profile image available</p>
+    {% endif %}</div>
+</div> 
+</div>
+		   </div>
+            <div class="clear"></div>	
+            <ul class="dc_pagination dc_paginationA dc_paginationA06">
+                
+            <li><a href="{% url 'user_profile' %}" class="current">Edit</a></li>
+            <li><a href="{% url 'add_education' %}" >2</a></li>
+            <li><a href="{% url 'links' %}">3</a></li>
+            <li><a href="{% url 'add_skills' %}">4</a></li>
+            <li><a href="{% url 'add_projects' %}">5</a></li>
+            <li><a href="{% url 'services' %}">6</a></li>
+            <li><a href="{% url 'templates_page' %}">7</a></li>
+            <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+        </ul>
+    </div>
+          </div>
+		</div>
+
+{% endblock %}

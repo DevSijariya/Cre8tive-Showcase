@@ -1,0 +1,161 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block scripts %}
+  <script type="text/javascript">
+    $(function() {
+        $('.gallery1 a').lightBox();
+    });
+   </script>
+   {% endblock %}
+{% block content %}
+
+<style>
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 columns with equal width */
+    grid-gap: 10px; /* spacing between grid items */
+}
+
+.template-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(2, 8, 30);
+}
+
+.template-item img {
+    max-width: 100px; /* adjust the width of the images */
+}
+@media(max-width:830px){
+  .template-grid {
+     grid-template-columns: repeat(2, 1fr); 
+}
+@media(max-width: 550px){
+  .template-grid {
+ 
+    grid-template-columns: repeat(1, 1fr);  
+}
+}
+}
+
+</style>
+<div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<li><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></li>
+                <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+                    
+					<li class="active"><a href="">Portfolio</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+					
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+     
+
+           
+       
+    </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	   <div class="pages">
+			 <div class="gallery4">
+                
+                   
+                   
+                <h2 style="font-size:2rem">Select Template</h2>
+                  <form id="template_choice_form" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="template-grid">
+                      <div class="template-item">
+                        <label for="template_1"><img src="{% static 'temps/Temp1.jpg' %}" style="border:3px solid black; height:15rem;" alt="Template 1"></label><br>
+                    <input type="radio" id="template_1" name="template_choice" value="1">
+                    <label for="color_picker">Select Color:</label>
+                    <input type="color" id="color_picker" name="color_choice">
+                    </div>
+                    <div class="template-item">
+                      <label for="template_2"><img src="{% static 'temps/Temp2.jpg' %}" style="border:3px solid black; height:15rem;" alt="Template 2"></label><br>
+                    <input type="radio" id="template_2" name="template_choice" value="2">
+                    
+                    </div>
+                    <!-- <div class="template-item">
+                      <label for="template_3"><img src="{% static 'images/template3.jpg' %}" alt="Template 3"></label><br>
+                    <input type="radio" id="template_3" name="template_choice" value="3">
+                     -->
+                     </div></div>
+ 
+                    
+                    <!-- Submit button -->
+                  <button type="submit">Save</button> 
+                  </form> 
+
+      
+               
+		   </div>
+           
+		   
+            <div class="clear"></div>	
+            <ul class="dc_pagination dc_paginationA dc_paginationA06">
+            <li><a href="{% url 'user_profile' %}" >1</a></li>
+            <li><a href="{% url 'add_education' %}"  >2</a></li>
+            <li><a href="{% url 'links' %}" >3</a></li>
+            <li><a href="{% url 'add_skills' %}">4</a></li>
+            <li><a href="{% url 'add_projects' %}">5</a></li>
+            <li><a href="{% url 'services' %}">6</a></li>
+            <li><a href="{% url 'templates_page' %}" class="current">7</a></li>
+            <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+        </ul>
+    </div>
+          </div>
+		</div>
+		
+          <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('template_choice_form'); 
+
+  // Form submission event
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Capture color choice
+    const colorChoice = document.getElementById('color_picker').value;
+    
+    // Append color choice to the form data
+    const formData = new FormData(form);
+    formData.append('color_choice', colorChoice);
+    
+    // Submit the form with color choice included
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}' // Add CSRF token header
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Form submitted successfully');
+        window.location.href = "{% url 'portfolio' user.username %}"; // Redirect to the home page
+      } else {
+        console.error('Form submission failed');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
+    });
+  });
+});
+
+  </script>
+
+{% endblock %}

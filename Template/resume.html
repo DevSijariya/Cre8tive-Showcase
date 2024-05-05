@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 5 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title>{{ details.name}} - Curriculum Vitae</title>
+
+    <style>
+      table,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+        word-wrap: break-word;
+        text-align: center;
+      }
+    </style>
+
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+    <!-- personal info -->
+    <div style="margin-left: 500px">
+      <h1>{{details.name}}</h1>
+      <h2>{{details.email}}</h2>
+      <h2>{{details.mobile_number}}</h2>
+    </div>
+
+  
+    <div>
+      <h1 style="margin-top: 50px">About Me :</h1>
+      <hr />
+      <p style="font-size: 10px; text-align:justify">{{details.User_description}}</p>
+    </div>
+
+    <!-- Education -->
+    <div>
+      <h1 style="margin-top: 50px">Education</h1>
+      <hr />
+      {% for edu in education_details %}
+      <table>
+        <thead>
+          <tr>
+            <th>Qualification</th>
+            <th>Board or University</th>
+            <th>School Or College</th>
+            <th>Year of Passing</th>
+            <th>CGPA/Percentage</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>{{edu.degree}}</td>
+          <td>{{edu.university}}</td>
+          <td>{{edu.college}}</td>
+          <td>{{edu.year_of_passing}}</td>
+          <td>{{edu.Cgpa}}</td>
+        </tr>
+      </table>
+
+      {% endfor %}
+    </div>
+
+    <!-- Skills -->
+    <div>
+      <h1 style="margin-top: 50px">Key Skills</h1>
+      <hr />
+      {% for skill in skills_details %}
+      <span style="font-size: 10px">{{skill.skills}} , </span>
+      {% endfor %}
+    </div>
+
+    <!-- Experience -->
+    {% if details.count_exp > 0 %}
+    <div>
+      <h1 style="margin-top: 50px">Work Experience</h1>
+      <hr />
+      {% for exp in details.experience %}
+      <h2>{{exp.post}}</h2>
+      <p class="subDetails">
+        {{exp.joining_date}} - {% if exp.ending_date == None %} present {% else
+        %} {{ exp.ending_date}} {% endif %}
+      </p>
+      <p style="font-size: 10px">{{exp.work_experience}}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Projects-->
+    {% if project_details %}
+    <div>
+      <h1 style="margin-top: 50px">Projects</h1>
+      <hr />
+      {% for project in project_details %}
+        <p><strong>{{project.title}}</strong> ({{project.start_date}}-{{project.end_date}})</p>
+      <p class="subDetails" style="text-align: justify;">{{project.description}}</p>
+      {% if project.link %}
+      <a href="{{project.link}}" target="_blank" style="color: blue"></a>
+      {% endif %}
+      {% endfor %}
+        
+    </div>
+    {% endif %}
+
+    <!-- Declaration -->
+
+    <div>
+      <h1 style="margin-top: 50px">Declaration</h1>
+      <hr />
+      <p style="font-size: 15px">
+        I hereby declare that all the information mentioned in my resume is
+        correct to the best of my knowledge.
+      </p>
+      <p style="font-size: 15px; margin-left: 550px; font-weight: bold">
+        {{details.name}}
+      </p>
+    </div>
+  </body>
+</html>

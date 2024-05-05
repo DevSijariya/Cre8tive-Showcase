@@ -1,0 +1,562 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    {% if template_choice.template_choice == '1' or not template_choice %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{% static 'portfolio.css' %}" >
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'resume.css' %}" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <style>
+        :root {
+            --main-color: {{ template_choice.color_choice }};
+        }
+        .dark-mode {
+    background-color: var(--bg-color-dark-mode); /* Use the stored darkened color */
+    --hv-color:var(--bg-color-dark-mode); 
+}
+{% for skill in skills_details %}
+
+      @keyframes html{
+        0%{ width: 0%;}
+        100%{ width:{{skill.level}};}
+      } {% endfor %} 
+    </style>
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            {% if services %}
+            <a href="#services">Services</a>{% endif %}
+            <a href="#portfolio">Projects</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="bx bx-moon" id="darkmode-icon"></div>
+        <div class="info-circle" >
+            <a href="{% url 'home' %}">
+                <i class="bx bx-info-circle" id="info"></i>
+            </a>
+        </div>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
+<br><br>
+    <section class="home" id="home">
+        <div class="home-content col-md-6" style="margin-left: 5%;margin-right: 5%;">
+            <br>
+            <h3>Hello, It's Me</h3>
+            <h1>{{details.name}}</h1>
+            <p style="text-align: justify;">{{details.aboutuser}}</p>
+            <div class="social-media">
+                {% for link in link %}
+                
+                <!-- Similarly, add links for other platforms -->
+       
+                <a href="{{link.github}}" target="_blank"><i class="bx bxl-github"></i></a>
+                <a href="{{link.linkdin}}" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                {% if link.facebook %}
+                <a href="{{link.facebook}}" target="_blank"><i class="bx bxl-facebook"></i></a>
+                {% endif %} {% if link.instagram %}
+                <a href="{{link.instagram}}" target="_blank"><i class="bx bxl-instagram"></i></a>
+                {% endif %} {% endfor %}
+            </div>
+            {% if details.Resume %}
+            <a href="{{details.Resume.url}}" target="_blank" class="btn">Download CV</a>
+            {% else %}
+            <a href="{% url 'generate_pdf' user.username %}" class="btn">Download CV</a>
+            {% endif %}
+            {% if details.photo %}
+            <img src="{{ MEDIA_URL }}{{ details.photo.url }}" alt="Profile Image" id="profileImage" />
+        {% endif %}
+        
+       
+        </div>   
+      
+        <div class="home-block" >
+            <div class="find-me">
+                <h2>Find Me at</h2>
+                <ul><br>
+                <li><p><strong>Number : </strong>{{details.mobile_number}}</p></li>
+                <li><p><strong>E-mail : </strong>{{details.email}}</p></li>
+                <li><p><strong>Address : </strong>{{details.address}}</p></li>
+                <a href="#contact"> <i class='bx bx-phone-call' ></i></a>
+                </ul>
+            </div>    
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-image">
+            <div class="box1"></div>
+            {% if details.photo %}
+            <div class="about-img">
+              
+            <img src="{{ MEDIA_URL }}{{ details.photo.url }}" alt="Profile-Image" id="profileImage" />
+    
+        
+            </div>
+            {% endif %}
+        </div>
+        <div class="about-content">
+            <h2 class="heading">About <span> Me</span></h2>
+            <p id="short-description" style="text-align: justify;">
+                {{details.User_description | truncatewords:100}}
+            </p>
+            <p id="full-description" style="text-align: justify; display: none;">
+                {{details.User_description }}
+            </p>
+            <a href="#" id="read-more-btn" class="btn">Read More</a>
+        </div>
+    </section>
+    {% if services %}
+    <section class="services" id="services">
+        <h2 class="heading">My <span>Services <i class='bx bx-briefcase'></i></span></h2>
+        <div class="services-container">
+            {% for s in services|slice:":8" %}
+            <div class="service-box" style="height:35rem;">
+
+                <h3>{{s.title}}</h3>
+                <p>
+                    {{ s.description |truncatewords:100 }}
+                </p>
+
+
+                <a href="#contact" class="btn">Hire Me</a>
+            </div>
+           {% endfor %}
+
+
+        </div>
+    </section>
+    {% endif %}
+    {% if project_details %}
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Latest <span>Project</span></h2>
+        <div class="portfolio-container">
+         
+            {% for p in project_details|slice:":6" %}
+        
+            <div class="portfolio-box" >
+                
+                <!-- <img src="{% static 'images/proj1.jpg' %}"> -->
+               
+                <div class="portfolio-layer">
+                   
+                        <h4>{{p.title}}</h4>
+                        <text>{{p.start_date}} to
+                            {% if p.end_date %}
+                            {{p.end_date}}</text>
+                        {% else %}
+                        Present</text>
+                        {% endif %}
+                 
+                    <p>{{p.description| truncatewords:80}}</p>
+                    <a href="{{p.link}}" >button</a>
+                    {% if p.link %}<a href="{{p.link}}" target="_blank"> <i class='bx bx-link'></i></a>{% endif %}
+                </div>
+            </div>
+            
+              
+            {% endfor %}
+            {% if project_details|length > 6 %}
+    <style>
+    @media screen and (min-width: 681px) {
+        .bttn {
+            display: block;
+        }
+    }
+    </style>
+{% elif project_details|length > 3 %}
+    <style>
+    @media screen and (max-width: 680px) {
+        .bttn {
+            display: block;
+        }
+    }
+    </style>
+{% endif %}
+
+<div class="bttn">
+    <a href="#" class="btn" style="width: 20rem;">View More</a>
+</div>
+        </div>
+    </section>
+    {% endif %}
+    <div class="overlay-project" id="projectOverlay">
+        <!-- Project details will be displayed here -->
+    </div>
+
+
+    <section class="resume" id="resume">
+        <h2 class="heading">My <span>Resume</span></h2><br>
+        <div class="resume-container">
+        <div class="resume-head">
+
+            <button class="r1" onclick="showSkills()">Skills</button>
+        <!-- <button class="r2" onclick="showEducation()">Education Details</button> -->
+        </div>
+        
+            <!-- Add IDs to identify each box -->
+            <div class="r-box1 skills_section" id="skillsBox">
+                
+        <div class="skills_head">
+            <h2>My <span>Skills</span></h2>
+            <p>Here is my skills to represent my Expertise</p>
+        </div>
+
+        <div class="skills_main">
+            {% for skill in skills_details %}
+            <div class="skill_bar">
+                <div class="info">
+                    <p>{{skill.skills}}</p>
+                    <P>{{skill.level}}%</P>
+                </div>
+                <div class="bar">
+                    <span class="html" style="width : {{skill.level}}%;"></span>
+                </div>
+            </div>
+            {% endfor %}
+  
+        </div>
+    </div>
+
+<!-- <div class="r-box2 education-section" id="educationBox">
+    <div class="skills_head">
+        <h2>My <span>Education</span></h2>
+    </div>
+    <table >
+        <thead >
+            <tr >
+              <th >Qualification</th>
+              <th>Board / University</th>
+              <th>School/College</th>
+              <th>Passout</th>
+              <th>CGPA / Percentage</th>
+            </tr>
+        </thead>
+    </table>
+        {% for edu in education_details %}
+        <table>
+          <tr>
+            <td>{{edu.degree}}</td>
+            <td>{{edu.university}}</td>
+            <td>{{edu.college}}</td>
+            <td>{{edu.year_of_passing}}</td>
+            {% if edu.Cgpa > 10 %}
+            <td>{{edu.Cgpa}} %</td>
+            {% else %}
+            <td>{{edu.Cgpa}}</td>
+            {% endif %}
+          </tr>
+        </table>
+  
+        {% endfor %}
+    <div class="extra"></div>
+</div> -->
+</div>
+</div>
+</section>
+    <!-- <div class="testimonial-container">
+        <h2 class="heading">Valuable <span>Testimonial</span></h2>
+        <div class="testimonial-wrapper">
+            <div class="testimonial-box mySwiper">
+                <div class="testimonial-content swiper-wrapper">
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="{% static 'images/proj1.jpg' %}">
+                    </div>
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="{% static 'images/PROJ2.jpg' %}">
+                    </div>
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="{% static 'images/proj1.jpg' %}">
+                    </div>
+                </div>
+
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me <i class='bx bx-phone-call'></i></span></h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+
+                {{form}}
+               </div>
+            <br><input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <div class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by Sanskar || All rights are reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"> <i class="bx bx-up-arrow-alt"></i></a>
+        </div>
+    </div>
+
+    <script src="{% static 'javascript/temp1.js' %}"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+</html>
+{% else %}
+
+<html>
+<head>
+	<title>{{user.username}} portfolio</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{% static 'css2/style.css' %}"> 
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css2/responsive.css' %}"> 
+    <script src="{% static 'js2/pace.js' %}"></script>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.jpeg' %}">
+    <style>
+
+#scr-down .about-img img {
+        width: 30%;
+        height: 30%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .port-style{
+        min-height:300px;
+    }
+      @media only screen and (max-width: 1250px){
+    #scr-down .about-img img {
+        width: 40%;
+        height: 40%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }}
+    @media(max-width:840px){
+        .port-style{
+        min-height:350px;
+    margin-top: -80px;
+        }
+    }
+        @media only screen and (max-width:450px){
+            #scr-down .about-img img{
+    width: 60%;
+    height: 60%;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+        }
+
+        @media(max-width:600px){
+            .port-style{
+        min-height:600px;
+        
+        /* margin-top:0px; */
+    }
+
+    /* .diamondswrap{
+        marg
+    } */
+        }
+        @media only screen and (max-width: 700px){
+#scr-down .about-img img {
+    width: 60%;
+    height: 60%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}}
+     </style>
+       
+    
+</head>
+<body>
+    
+	<div id="vid-overlay"></div>
+	<!-- Intro -->
+	<section id="intro">
+		<div id="intro-text">
+
+            {% if portfolio_views is not None %}
+            <p style="color: white; font-size:20px;margin-left: 20px;">Total Portfolio Views: {{ portfolio_views }}</p><br>
+        {% endif %}
+
+			<!-- To change text go to scripts.js -->
+			<h1>We are <span id="fill-text"></span></h1>
+			<div href="#about" id="scr-down">
+				<h2><span>{{details.name}}</span> </h2>
+                {% if details.photo %}
+            <div class="about-img">
+              
+            <img src="{{ MEDIA_URL }}{{ details.photo.url }}" alt="Profile-Image" id="profileImage"/><br>
+            
+        
+            </div>
+            {% endif %}
+         
+
+				<a href="#about">
+					<img src="{% static 'images2/scr_down.png' %}">
+				</a> 
+			</div>
+		</div>
+	</section>
+	<!-- About -->
+	<section id="about" >
+		<article>
+			<h5>The Brief</h5>
+			<h1><span>Hello ,
+            </span>,{{ details.User_description}}
+            <br>
+            {% if details.Resume %}
+            &nbsp;<a id="send-btn" href="{{details.Resume.url}}" target="_blank">
+               CV
+            </a> <br>
+            {% else %}
+            &nbsp;<a href="{% url 'generate_pdf' user.username %}" id="send-btn">CV</a>
+            {% endif %}
+            
+		</article>
+	</section>
+	<!-- Services -->
+    {% if services %}
+	<section id="services">
+		<h2>Services <span>that we offer</span></h2>
+		<article>
+            {% for s in services %}
+			<div id="php">    
+                    <h3>{{s.title}}</h3>
+			</div>
+            {% endfor %}
+		</article>
+	</section>{% endif %}
+	<!-- Process -->
+	<section id="process">
+		<h2>Skills</h2>
+		<article>
+            {% for skill in skills_details|slice:":4" %}
+<span id="code">
+    <!-- <img src="{% static 'images2/code.png' %}"> -->
+    <h5>{{skill.skills}}</h5>
+    <h5>{{skill.level}}%</h5>
+</span>
+{% endfor %}
+<h4>&hellip;and more.</h4>
+		</article>
+	</section>
+	<!-- Portfolio -->
+    {% if project_details %}
+	<section id="portfolio">
+		<div id="color-bg"></div>
+		<h2>Portfolio</h2>
+		<ul class="port-style">
+			<div class="diamondswrap" id="port-items">
+                {% for p in project_details  %}
+				<div class="item" style="background-image: url(/static/images2/portfolio/{{forloop.counter}}.jpg);"><span class="item-hover"><h4>{{p.title}}</h4><a href="{{p.link}}">Take a look</a></span></div>
+				{% endfor%}
+				</div>
+		</ul>
+	</section>{% endif %}
+	<!-- Contact -->
+	<section id="contact">
+		<article>
+	          	<div id="contact_form">
+	           	<h3>Let's start a project</h3>
+	           	<p>If you have a project in mind, you can use the below form to contact us.</p>
+	           	<hr>
+			  	<form id="cont-form" method="post">
+                {% csrf_token %}
+	              <input type="text" name="name" required id="id_name" placeholder="Name"><span>*</span><br>
+	              <input type="text" spellcheck='false' name="email" required id="id_email" placeholder="Email Address" ><span>*</span><br>
+	              <input type="text" name="subject" required id="id_subject" placeholder="Subject"><span>*</span><br>
+	              <textarea name="message" placeholder="Tell us a little about your project" required id="id_message"></textarea><span style="margin-top:12px;">*</span><br>
+	              <input type="submit" value="Send " id="send-btn">
+                 
+	              <div class="clr"></div>
+			    </form>
+			</div>
+			<div id="address">
+				<p>or you can send an email or call us.</p>
+				<span style="font-size:15px;">{{details.email}}</span>
+				<span>(+91) {{details.mobile_number}}</span>
+				<span>{{details.address}}</span>
+                
+                
+                
+                {% for link in link %}
+                
+                <a href="{{link.github}}" target="_blank" style="color: black; font-size:20px; margin-left:40px"> Github</a><br> <br>            
+                 <a href="{{link.linkdin}}" target="_blank" style="color: black; font-size:20px; margin-left:40px"> Linkdin </a><br><br>
+                {% if link.facebook %}
+                <a href="{{link.facebook}}" target="_blank" style="color: black; font-size:20px; margin-left:40px"> Facebook</i></a><br><br>
+                {% endif %} {% if link.instagram %}
+                <a href="{{link.instagram}}" target="_blank" style="color: black;font-size:20px; margin-left:40px"> Instagram</a>
+                {% endif %} {% endfor %}
+	        </div>
+		</article>
+		
+	</section>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
+    <script src="{% static 'js2/modernizr.custom.js' %}"></script>
+    <script src="{% static 'js2/device.min.js' %}"></script>
+	<script src="{% static 'js2/jquery.wordrotator.js' %}"></script>
+	<script src="{% static 'js2/smooth-scroll.js' %}"></script>
+  	<script src="{% static 'js2/TweenMax.min.js' %}"></script>
+  	<script src="{% static 'js2/jquery.superscrollorama.js' %}"></script>
+	<script src="{% static 'js2/jquery.diamonds.js' %}"></script>
+	<script src="{% static 'js2/jquery.mb.YTPlayer.js' %}"></script>
+	<script src="{% static 'js2/scripts.js' %}"></script> <!-- Edit this -->
+	<!-- Put background video URL here  -->
+	<a class="player" data-property="{videoURL:'http://youtu.be/UDV5O4N4FE4',containment:'body',autoPlay:true, quality:'large',  mute:true, startAt:0,opacity:1}"></a>
+    
+    <div class="footer" style="background-color: rgb(82, 84, 86); height:120px;">
+        <div class="wrap">
+            <div class="footer-grid footer-grid1">
+                <div class="f-logo">
+                 <a href="{% url 'home' %}"><h1 style="font-size:1.5rem; color:white; font-style: italic; margin-left:2%">Portfolio Builder</h1></a>
+                 {% if portfolio_views is not None %}<br>
+                 <a href="{url 'user_profile' %}" style="font-size:15px; color:white; margin-left:2%;">Edit More details</a>
+                 {% endif %}
+                </div>
+            </div>
+            <div class="footer-grid footer-grid2">
+              
+                <ul>
+                   
+                    
+                    <li><i class="mail"> </i><div class="extra-wrap1"><br>
+                        
+                    <p style="color: white; font-size:20px;font-style: italic; margin-left: 2%;">© Copyright By Sanskar Sijariya</p>
+                    </div></li>
+                </ul>
+            </div>
+          
+            <div class="clear"> </div>
+        </div>
+    </div>
+ 
+  
+           
+            <div class="clear"></div>
+          </div>
+   </div>
+</body>
+</html>
+
+{% endif %}

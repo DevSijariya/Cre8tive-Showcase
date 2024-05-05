@@ -1,0 +1,111 @@
+{% extends 'first.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .pages .gallery4{
+        display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+    }
+    .dis{
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    @media(max-width:624px){
+        .pages .gallery4{
+        grid-template-columns: repeat(1, 1fr); 
+        }
+    }
+    @media(max-width:350px){
+        .dis{
+            width: 70%;
+        }
+    }
+
+</style>
+<div class="wrap">
+    <div class="pages-top">
+        <div class="logo">
+            <li>
+                <h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1>
+            </li>
+            <li>
+                <h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3>
+            </li>
+        </div>
+        <div class="h_menu4"><!-- start h_menu4 -->
+            <a class="toggleMenu" href="#">Menu</a>
+            <ul class="nav">
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+
+                <li class="active"><a href="">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+
+            </ul>
+            <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+        </div><!-- end h_menu4 -->
+        <div class="clear"></div>
+    </div><!-- end header_main4 -->
+</div>
+
+
+
+
+</div>
+<div class="main">
+    <div class="wrap">
+        <div class="pages">
+            <h1 style="font-size: 20px;font-weight: bold;font-style: italic;">Projects</h1><br>
+            <div class="gallery4" >
+
+
+               
+                
+                        {% for p in project_details %}
+                            <div class="dis" >
+                                <!-- Display project details -->
+                                <p><strong>Title: </strong>{{ p.title }}</p>
+                                <p><strong>Description: </strong><details>{{ p.description }}</details></p>
+                                <p><strong>Start Date: </strong>{{ p.start_date }}</p>
+                                <p><strong>End Date: </strong>{{ p.end_date }}</p>
+                                {% if p.link %}
+                                    <a href="{{ p.link }}" target="_blank">Link</a><br>
+                                {% endif %}
+                                <form method="post" action="{% url 'delete_project' p.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete" onclick="return confirm('Are you sure you want to delete this project detail?')">Delete</button>
+                                </form>
+                            </div>
+                        {% endfor %}
+                  
+               <br>
+               
+
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <ul class="dc_pagination dc_paginationA dc_paginationA06">
+        <li><a href="{% url 'add_education' %}" class="previous">Previous</a></li>
+        <li><a href="{% url 'user_profile' %} ">1</a></li>
+        <li><a href="{% url 'add_education' %}" >2</a></li>
+        <li><a href="{% url 'links' %}">3</a></li>
+        <li><a href="{% url 'add_skills' %}">4</a></li>
+        <li><a href="{% url 'add_projects' %}" class="current">Edit</a></li>
+        <li><a href="{% url 'services' %}">6</a></li>
+        <li><a href="{% url 'templates_page' %}">7</a></li>
+        <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+    </ul>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

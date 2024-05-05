@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Portfolio Builder Create Your Free Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'form.css' %}" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.jpeg' %}">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.lightbox.js' %}"></script>
+    <!---strat-slider---->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'details.css' %}">
+    <script type="text/javascript" src="{% static 'js/modernizr.custom.28468.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cslider.js' %}"></script>
+    {% block scripts %}
+    <script type="text/javascript">
+        $(function() {
+            $('#da-slider').cslider({
+                autoplay    : true,
+                bgincrement : 450
+            });
+        });
+    </script>{% endblock %}
+    <!---//strat-slider---->
+    <script src="{% static 'js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+    <script>
+        $(document).ready(function() {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+        });
+    </script>
+</head>
+<body>
+    {% block content %}
+    <div class="wrap"> 
+        <div class="header-top">
+                <div class="logo">
+                   <h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1>
+                   {% if user.is_authenticated  %}
+                   <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+                   {% endif %}
+                 </div>
+                 <div class="h_menu4"><!-- start h_menu4 -->
+                    <a class="toggleMenu" href="#">Menu</a>
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <!-- <li><a href="pages.html">Pages</a>
+                            <ul>
+                                <li><a href="pages.html">Dropdown</a></li>
+                                <li><a href="pages.html">Structure</a></li>
+                                <li><a href="pages.html">People</a></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li><a href="shortcodes.html">Shortcodes</a>
+                            <ul>
+                                <li><a href="shortcodes.html">CSR</a></li>
+                                <li><a href="shortcodes.html">Locations</a></li>
+                                <li><a href="shortcodes.html">PPV</a></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li><a href="blog.html">Blog</a>
+                            <ul>
+                                <li><a href="blog.html">Dropdown</a></li>
+                                <li><a href="blog.html">Structure</a></li>
+                                <li><a href="blog.html">People</a></li>
+                            </ul>
+                        </li> -->
+                        <li><a href="{% url 'user_profile' %}">Portfolio</a>
+                            <!-- <ul>
+                                <li><a href="portfolio.html">Dropdown</a></li>
+                                <li><a href="portfolio.html">Structure</a></li>
+                                <li><a href="portfolio.html">People</a></li>
+                            </ul> -->
+                        </li>
+                        <li><a href="{%url 'contact'%}">Contact</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'signup' %}">Login</a></li>
+                        {% endif %}
+
+                    </ul>
+                    <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+                </div><!-- end h_menu4 -->
+                <div class="clear"></div>
+            </div><!-- end header_main4 -->
+            <div class="slider">
+                    <!---start-da-slider----->
+                  <div id="da-slider" class="da-slider">
+                      <div class="da-slide">
+                        <h1>Create Your Fully Responsive Portfolio 😉</h1>
+                        <!-- <p>hendrerit in vulputate velit esse.</p> -->
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'user_profile' %}" class="da-link">Get Started</a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="da-link">Get Started</a>
+                        {% endif %}
+                      </div>
+                      <div class="da-slide">
+                        <h1>Share Your Portfolio with Everyone </h1>
+                        <!-- <p>dignissim blandit praesent lup.</p> -->
+                        
+                      </div>
+                      <div class="da-slide">
+                        <h1>Explore More Projects</h1>
+                        <!-- <p>quod mazim placerat facer possim.</p> -->
+                       
+                       
+                      </div>
+                      		
+                      <nav class="da-arrows">
+                        <span class="da-arrows-prev"></span>
+                         <span class="da-arrows-next"></span>
+                      </nav>
+                   </div>
+                    <!---//End-da-slider----->
+              </div>
+         </div> <div class="main">
+            <div class="wrap">
+               <h2 class="m_1" style="text-align:center;">Welcome to our project, a versatile portfolio-building platform tailored to your creative needs. Our project empowers users to craft visually stunning portfolios that captivate audiences and leave a lasting impression. With a user-friendly interface and a plethora of customization options, you have the freedom to express your unique style and personality. </h2>
+                 <div class="content-top">
+                    <div class="col_1_of_4 span_1_of_4">
+                       
+                       <img src="{% static 'images/image/pic.jpg' %}" type="image/jpg" />
+                       <div class="desc">
+                           <h3>Easy Customizable</h3>
+                           <p style="text-align:justify;">Our project is highly customizable, allowing users to select any template and color scheme according to their preferences. With our platform, users have the freedom to personalize their portfolios effortlessly, ensuring their unique style shines through.</p>
+                       </div>
+                   </div>
+                   <div class="col_1_of_4 span_1_of_4">
+                    
+                        
+                       <img src="{% static 'images/image/pic1.jpeg' %}" style="height:11.7rem; width:100%" />
+                       <div class="desc">
+                           <h3>Shareable</h3>
+                           <p style="text-align:justify;">Our project is designed to offer users a seamless and hassle-free experience when it comes to sharing their portfolios. With just a simple link, users can easily share their customized portfolios with anyone they choose.</p>
+                       </div>
+                   </div>
+                   <div class="col_1_of_4 span_1_of_4">
+                    
+                   <img src="{% static 'images/image/pic2.png' %}"  style="height:13.2rem; width:100%" alt=""/>
+                   <div class="desc">
+                       <h3>Query</h3>
+                       <p style="text-align:justify;">For any inquiries or assistance, users can easily reach out to us. Our platform is equipped with a dedicated support system, allowing users to contact us directly in case of any issues or questions. </p>
+                   </div>
+               </div>
+                   <!-- <div class="col_1_of_4 span_1_of_4">
+                        <i class="aeroplane"> </i>
+                       <img src="{ % static 'images/image/pic1.jpg' %}" alt=""/>
+                       <div class="desc">
+                           <h3>Fastest Workers</h3>
+                           <p>soluta nobis eleifend option congue<br> adipiscing elit, sed diam nonummy nibh<br>euismod tincidunt ut laoreet dolore delenit.</p>
+                       </div>
+                   </div> -->
+                   <div class="clear"></div>
+                </div>
+                <div class="m_3"><span class="left_line"></span> About Creator<span class="right_line"> </span></div>
+                 <div class="content-middle">
+                    
+                   <div class="col_1_of_middle span_1_of_middle">
+                      <h3>Hello Everyone I'm Sanskar Sijariya</h3>
+                       <p style="text-align:justify; font-size:20px;">I am an enthusiastic Python developer with a passion for crafting robust and scalable applications. With a solid background in Python programming, web development, and data analysis, I continuously strive to refine my skills and stay updated with the latest technologies and industry best practices.
+                        <br><br>
+                       </p><p style="text-align:justify; font-size: 20px;"> My expertise lies in leveraging Python frameworks such as Django and Flask to create high-performance backend systems, RESTful APIs, and dynamic web applications. I have a knack for writing clean, efficient code and solving complex problems, which drives me to deliver optimal solutions for every project.</p>
+                       <p style="text-align:justify; font-size: 20px;">In database management, I am proficient across various systems such as SQL, enabling me to design efficient data models and optimize database performance for seamless application operations.<br><br>
+                        Moreover, I possess a strong command of frontend technologies including HTML, CSS, and JavaScript, allowing me to contribute effectively to full-stack projects. </p>
+                        <p style="text-align:justify; font-size: 20px;">My proficiency in data science libraries such as NumPy, Pandas, and Matplotlib empowers me to extract valuable insights from complex datasets, driving informed decision-making and enhancing project outcomes.
+
+                          I excel at analyzing data, building predictive models, and visualizing insights to inform strategic decisions and drive business success.
+                            
+                            Driven by a relentless pursuit of excellence, I am committed to delivering innovative solutions and exceeding expectations in every endeavor.</p>
+                    </div>
+                    <div class="col_1_of_middle span_1_of_middle">
+                      <img src="{% static 'data/Sanskar Sijariya.jpg' %}" />
+                  </div>
+                   <div class="clear"></div>
+                </div>
+                                 <div class="clear"></div>
+
+
+
+                 <div class="m_3"><span class="left_line"></span> My Other Projects<span class="right_line"> </span></div>
+		      <div class="content-top">
+				 <div class="col_1_of_projects span_1_of_projects"><a href="https://github.com/DevSijariya/Medical_Insurance_Cost_Identification">
+				   <div class="view view-first">
+                    <img src="{% static 'imgpersonal/p1.jpeg' %}" />
+                      <div class="mask">
+                        <h2>Health Plan Prognosticator</h2>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                         <a class="popup-with-zoom-anim" href="#small-dialog3"> <div class="info">Read More</div></a>
+		                     <div id="small-dialog3" class="mfp-hide">
+							   <div class="pop_up2">
+							   	  <img src="{% static 'imgpersonal/p1.jpeg' %}" />
+							   	  <h3 class="m_4"><a href="https://github.com/DevSijariya/Medical_Insurance_Cost_Identification">Health Plan Prognosticator</a></h3>
+				                  <p class="m_5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur voluptatibus fugiat praesentium labore exercitationem dolorem.</p>
+							   </div>
+							 </div>
+                        </div>
+                     </div> 
+					<h3 class="m_4"><a href="">Health Plan Prognosticator</a></h3>
+				    <p class="m_5">Machine Learning</p>
+				  </a> </div>
+				 <div class="col_1_of_projects span_1_of_projects"><a href="https://github.com/DevSijariya/Virtual-Mouse-Using-Computer-Vision">
+				   <div class="view view-first">
+                    <img src="{% static 'imgpersonal/p2.jpeg' %}" />
+                      <div class="mask">
+                        <h2>AirCursor</h2>
+                        <p>VirtualMouse is an innovative computer vision project that revolutionizes user interaction with computers by enabling intuitive hand gesture control.</p>
+                         <a class="popup-with-zoom-anim" href="#small-dialog4"> <div class="info">Read More</div></a>
+		                     <div id="small-dialog4" class="mfp-hide">
+							   <div class="pop_up2">
+							   	  <img src="{% static 'imgpersonal/p2.jpeg' %}" alt=""/>
+							   	   <h3 class="m_4"><a href="https://github.com/DevSijariya/Virtual-Mouse-Using-Computer-Vision">AirCursor</a></h3>
+				    				<p class="m_5">VirtualMouse is an innovative computer vision project that revolutionizes user interaction with computers by enabling intuitive hand gesture control. Leveraging cutting-edge computer vision algorithms and libraries, VirtualMouse analyzes hand gestures in real-time to precisely control the mouse cursor without the need for a physical mouse or touchpad.</p>
+							   </div>
+							 </div>
+                        </div>
+                     </div> 
+                     <h3 class="m_4"><a href="https://github.com/DevSijariya/Virtual-Mouse-Using-Computer-Vision">AirCursor</a></h3>
+                     <p class="m_5">Computer Vision</p>
+                   </a> </div>
+                  <div class="col_1_of_projects span_1_of_projects"><a href="#">
+                    <div class="view view-first">
+                     <img src="{% static 'imgpersonal/p3.jpeg' %}" alt=""/>
+                       <div class="mask">
+                         <h2>Cre8tive Showcase</h2>
+                         <p>"Cre8tive Showcase" is a fantastic name for a project that helps users showcase their talents and skills through portfolios. </p>
+                          <a class="popup-with-zoom-anim" href="#small-dialog5"> <div class="info">Read More</div></a>
+                              <div id="small-dialog5" class="mfp-hide">
+                                <div class="pop_up2">
+                                      <img src="{% static 'imgpersonal/p3.jpeg' %}" alt=""/>
+                                       <h3 class="m_4"><a href="#">Cre8tive Showcase</a></h3>
+                                    <p class="m_5">"Cre8tive Showcase" is a fantastic name for a project that helps users showcase their talents and skills through portfolios. It's clever, memorable, and effectively communicates the platform's focus on creativity and showcasing abilities. Users will likely find it appealing and easy to remember when looking for a platform to display their work.</p>
+                                </div>
+                              </div>
+                         </div>
+                      </div> 
+                      <h3 class="m_4"><a href="#">Cre8tive Showcase</a></h3>
+				    <p class="m_5">Web Development</p>
+				  </a> </div>
+				 <!-- <div class="col_1_of_projects span_1_of_projects"><a href="#"> -->
+				   <!-- <div class="view view-first">
+                    <img src="{% static 'images/image/pic4.jpg' %}" alt=""/>
+                      <div class="mask">
+                        <h2>Hover Style #1</h2>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                         <a class="popup-with-zoom-anim" href="#small-dialog6"> <div class="info">Read More</div></a>
+		                     <div id="small-dialog6" class="mfp-hide">
+							   <div class="pop_up2">
+							   	  <img src="{% static 'images/image/pic4.jpg' %}" alt=""/>
+							   	   <h3 class="m_4"><a href="#">augue duis dolore te feugait</a></h3>
+				    				<p class="m_5">Marketing</p>
+							   </div>
+							 </div>
+                        </div>
+                     </div>  -->
+					<!-- <h3 class="m_4"><a href="#">augue duis dolore te feugait</a></h3>
+				    <p class="m_5">Marketing</p>
+				  </a> </div> -->
+				<div class="clear"></div><div class="btn" ><a href="https://github.com/DevSijariya?tab=repositories">Learn More</a></div><br><br>
+        <div class="clear"></div>
+		 </div>
+         <!-- <div class="m_3"><span class="left_line"></span>Testimonials<span class="right_line"> </span></div> -->
+         <!-- <div class="wmuSlider example">
+           <div class="wmuSliderWrapper">
+              <article style="position: absolute; width: 100%; opacity: 0;"> 
+                     <div class="banner-text">
+                     <p>diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud <br>exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor<br> in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+                  </div>
+                  <h3 class="m_6">Ut wisienim, <span class="bg1">Company name</span></h3>
+              </article>
+              <article style="position: relative; width: 100%; opacity: 1;"> 
+                     <div class="banner-text">
+                     <p>claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me  <br>exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor<br> in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+                  </div>
+                  <h3 class="m_6">Ut wisienim, <span class="bg1">Company name</span></h3>
+              </article>
+              <article style="position: absolute; width: 100%; opacity: 0;">
+                  <div class="banner-text">
+                     <p>Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta <br> in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+                  </div>
+                   <h3 class="m_6">Ut wisienim, <span class="bg1">Company name</span></h3>
+              </article>
+              <article style="position: absolute; width: 100%; opacity: 0;">
+                   <div class="banner-text">
+                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam<br>exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor<br> in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
+                  </div>
+                   <h3 class="m_6">Ut wisienim, <span class="bg1">Company name</span></h3>
+              </article>
+             </div>
+             <ul class="wmuSliderPagination">
+                <li><a href="#" class="">0</a></li>
+                <li><a href="#" class="class="wmuActive"">1</a></li>
+                <li><a href="#" >2</a></li>
+                <li><a href="#">3</a></li>
+            </ul>
+          </div> -->
+          <div class="clear"></div>
+             <script src="{% static 'js/jquery.wmuSlider.js' %}"></script> 
+               <script>
+                       $('.example').wmuSlider();         
+                  </script> 	
+        </div>
+    </div>
+    {% endblock %}
+    <div class="footer">
+        <div class="wrap">
+            <div class="footer-grid footer-grid1">
+                <div class="f-logo">
+                 <a href="index.html"><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></a>
+                </div>
+                <!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p> -->
+            </div>
+            <div class="footer-grid footer-grid2">
+                <h4>Contact</h4>
+                <ul>
+                    <!-- <li><i class="pin"> </i><div class="extra-wrap">
+                        <p>2321 Street name,<br> City name,Country</p>
+                    </div></li> -->
+                 
+                    <li><i class="mail"> </i><div class="extra-wrap1">
+                        <p>sanskarsija59@gmail.com.com</p>
+                    </div></li>
+                    <li><i class="earth"> </i><div class="extra-wrap1">
+                        <p>cre8tiveshowcase@gmail.com</p>
+                    </div></li>
+                </ul>
+            </div>
+          
+            <div class="clear"> </div>
+        </div>
+    </div>
+ 
+    <div class="footer-bottom">
+           <div class="wrap">
+               <div class="copy">
+               <p>© Copyright By Sanskar Sijariya</p>
+            </div>
+            <div class="social">	
+               <ul>	
+                  <li class="facebook"><a href="#"><span> </span></a></li>
+                  <li class="linkedin"><a href="https://www.linkedin.com/in/sanskar-sijariya-7544b2242/"><span> </span></a></li>
+                  <li class="twitter"><a href="#"><span> </span></a></li>		
+               </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+   </div>
+</body>
+</html>

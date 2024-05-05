@@ -1,0 +1,79 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+<div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<a href="index.html"><img src="images/logo.png" alt=""/></a>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+					
+					<li><a href="{% url 'user_profile' %}">Portfolio</a>
+						
+					</li>
+					<li class="active"><a href="">Contact</a></li>
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	    <div class="contact">
+	          <div class="m_contact"><span class="left_line1"> </span>Contact<span class="right_line1"> </span></div>
+              <p class="m_12">
+
+				"Thank you for reaching out! Please enter your query, and we'll do our best to resolve it as soon as possible. Your satisfaction is our top priority, and we're here to assist you every step of the way."</p>
+              <div class="contatct-top">
+               <!-- <form method="post" action="{% url 'contact' %}">
+				{% csrf_token %}
+					<div class="to">
+                     	<input type="text" class="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+					 	<input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" style="margin-left: 10px">
+					</div>
+					<div class="to">
+                     	<input type="text" class="text" value="Your Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Website';}">
+					 	<input type="text" class="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}" style="margin-left: 10px">
+					</div>
+					<div class="text">
+	                   <textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message:</textarea>
+	                </div>
+	                <div>
+	               		<input type="submit" value="Submit">
+	                </div>
+               </form> -->
+			   <form method="post" action="{% url 'contact' %}">
+				{% csrf_token %}
+				<div class="to">
+					 <input type="text" required_id="id_name" class="text" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+					 <input type="text" required id="id_email" class="text" name="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" style="margin-left: 10px">
+				</div>
+				<div class="to">
+					 <!-- <input type="text" class="text" value="Your Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Website';}"> -->
+					 <input type="text"required id="id_subject"name="subject" class="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}" style="width:97%;>
+				</div>
+				<div class="text">
+				   <textarea value="Message:" required id="id_message" name="message" value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}"  style="width:97.5%;height:10rem;" placeholder="Message"></textarea>
+				</div>
+				<div>
+					   <input type="submit" value="Submit" style="height:4rem">
+				</div>
+		   </form>
+             </div>
+		   </div>
+		</div>
+		</div>
+		
+{% endblock %}

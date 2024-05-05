@@ -1,0 +1,91 @@
+
+
+
+{% extends 'home.html' %}
+{% load static %}
+{% block scripts %}
+  <script type="text/javascript">
+    $(function() {
+        $('.gallery1 a').lightBox();
+    });
+   </script>
+   {% endblock %}
+{% block content %}
+<div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<li><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></li>
+                <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+                    
+					<li class="active"><a href="">Portfolio</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+					
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+     
+
+           
+       
+    </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	   <div class="pages">
+			 <div class="gallery1">
+                <div class="da">
+                    <h2>Instructions</h2>
+                   
+                      
+                           <br>
+                           <p><strong>Write things carefully</strong></p><br>
+                           <p><strong>Write here about your Project Details </strong></p><br>
+                           <p><strong>You can edit your detail after submitting </strong></p><br>
+                        
+                            <br><br>
+                   </div>
+                <div class="bo"  style="border: 3px solid rgb(10, 10, 67);">
+                  <form method="post" action="{% url 'add_projects' %}">
+
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    <input text="text" name="project_details-0-title" id="id_project_details-0-title" placeholder="Title">
+                    <input type="textarea" name="project_details-0-description" id="id_project_details-0-description" cols="40" rows="10" placeholder="Description">
+                    <input text="text" name="project_details-0-start_date" id="id_project_details-0-start_date" placeholder="Start Date">
+                    <input type="text" name="project_details-0-end_date" id="id_project_details-0-end_date"  placeholder="End Date">
+                    <input type="text" name="project_details-0-link" id="id_project_details-0-link"  placeholder="Link">
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        
+               
+		   </div>
+           
+		   
+            <div class="clear"></div>	
+            <ul class="dc_pagination dc_paginationA dc_paginationA06">
+            
+            <li><a href="{% url 'user_profile' %}" >1</a></li>
+            <li><a href="{% url 'add_education' %}"  >2</a></li>
+            <li><a href="{% url 'links' %}" >3</a></li>
+            <li><a href="{% url 'add_skills' %}" >4</a></li>
+            <li><a href="{% url 'add_projects' %}" class="current">5</a></li>
+            <li><a href="{% url 'services' %}">6</a></li>
+            <li><a href="{% url 'templates_page' %}">7</a></li>
+            <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+        </ul>
+    </div>
+          </div>
+		</div>
+		
+       
+
+{% endblock %}

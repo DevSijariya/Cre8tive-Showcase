@@ -1,0 +1,84 @@
+
+{% extends 'home.html' %}
+{% load static %}
+{% block scripts %}
+  <script type="text/javascript">
+    $(function() {
+        $('.gallery1 a').lightBox();
+    });
+   </script>
+   {% endblock %}
+{% block content %}
+<div class="wrap"> 
+	<div class="pages-top">
+	        <div class="logo">
+				<li><h1 style="font-size:2rem; color:white; font-style: italic;">Portfolio Builder</h1></li>
+                <li><h3 style="color:white; font-style: italic;"> Welcome {{user.username}}</h3></li>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					
+                    
+					<li class="active"><a href="">Portfolio</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+					
+				</ul>
+				<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+     </div>
+     
+
+           
+       
+    </div>
+	 <div class="main">
+	     <div class="wrap">
+	 	   <div class="pages">
+			 <div class="gallery1">
+                <div class="da">
+                    <h2>Instructions</h2>
+                   
+                      
+                           <br>
+                           <p><strong>Enter your Links</strong></p><br>
+                           
+                            <br><br>
+                   </div>
+                <div class="bo"  style="border: 3px solid rgb(10, 10, 67);">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="url" name="github" maxlength="200" id="id_github" placeholder="GitHub">
+                        <input type="url" name="linkdin" maxlength="200" id="id_linkdin" placeholder="Linkdin">
+                        <input type="url" name="facebook" maxlength="200" id="id_facebook" placeholder="Facebook">
+                        <input type="url" name="instagram" maxlength="200" id="id_instagram" placeholder="Instagram">
+                        <button type="submit">Submit</button>
+                    </form>
+            </div>
+        
+               
+		   </div>
+           
+		   
+            <div class="clear"></div>	
+            <ul class="dc_pagination dc_paginationA dc_paginationA06">
+            
+            <li><a href="{% url 'user_profile' %}" >1</a></li>
+            <li><a href="{% url 'add_education' %}"  >2</a></li>
+            <li><a href="{% url 'links' %}" class="current">3</a></li>
+            <li><a href="{% url 'add_skills' %}">4</a></li>
+            <li><a href="{% url 'add_projects' %}">5</a></li>
+            <li><a href="{% url 'services' %}">6</a></li>
+            <li><a href="{% url 'templates_page' %}">7</a></li>
+            <li><a href="{% url 'portfolio' user.username %}" class="next">Generate </a></li>
+        </ul>
+    </div>
+          </div>
+		</div>
+		
+       
+
+{% endblock %}
